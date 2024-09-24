@@ -1,14 +1,14 @@
-CREATE TABLE Product (
+CREATE TABLE Categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Products (
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     product_price NUMERIC(10, 2) NOT NULL,
     product_acceptance_date DATE NOT NULL,
-    category_id INTEGER REFERENCES Categories(category_id)
-)
-
-CREATE TABLE Categories (
-    category_id SERIAL PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL
+    FOREIGN KEY category_id INTEGER REFERENCES Categories(category_id)
 );
 
 INSERT INTO Categories (category_name) VALUES

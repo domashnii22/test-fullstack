@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "docker-build": "docker-compose -f docker-compose.yml build",
-    "docker-up": "docker-compose -f docker-compose.yml up",
+    "docker-up": "docker-compose -f ../docker-compose.yml up",
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix ."
   },
@@ -16,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0",
-    "pg": "^8.13.0"
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
