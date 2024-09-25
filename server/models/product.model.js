@@ -1,7 +1,7 @@
-const { sequelize, DataTypes } = require('sequelize');
-const Category = require('./category');
+const DataTypes = require('sequelize');
+const sequelize = require('../db');
 
-const Product = sequelize.define('Product', {
+const Product = sequelize.define('products', {
   product_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -19,12 +19,6 @@ const Product = sequelize.define('Product', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-});
-
-Product.belongsTo(Category, {
-  foreignKey: 'category_id',
-  onDelete: 'CASCADE',
-  onUpdate: 'CASCADE',
 });
 
 module.exports = Product;

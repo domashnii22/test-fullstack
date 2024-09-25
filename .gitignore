@@ -6,7 +6,6 @@ npm-debug.log*
 # Dependency directory
 node_modules
 .env
-pgdata/
 
 # Optional npm cache directory
 .npm

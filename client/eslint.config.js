@@ -1,0 +1,29 @@
+import js from '@eslint/js';
+import globals from 'globals';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+
+export default eslint.config({
+  extends: [js.configs.recommended],
+  files: ['**/*.{js,jsx}'],
+  ignores: ['dist'],
+  languageOptions: {
+    ecmaVersion: 2020,
+    globals: globals.browser,
+  },
+  plugins: {
+    'react-hooks': reactHooks,
+    'react-refresh': reactRefresh,
+  },
+  rules: {
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    semi: ['error', 'always', { omitLastInOneLineBlock: false }],
+    'comma-dangle': ['error', 'always-multiline'],
+    quotes: ['error', 'single'],
+    'react/prop-types': [0],
+    indent: ['error', 2],
+  },
+});
