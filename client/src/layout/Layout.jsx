@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TableViewIcon from '@mui/icons-material/TableView';
 
-export function Layout() {
+export default function Layout() {
   return (
-    <Stack direction="row" padding="20px">
+    <Stack direction="row" padding="40px" gap="100px">
       <Stack
         height="75vh"
         padding="20px"
@@ -26,22 +26,6 @@ export function Layout() {
         >
           Menu
         </Typography>
-        <NavLink to="/dashboards">
-          <Button
-            startIcon={<DashboardIcon />}
-            variant="contained"
-            sx={{
-              width: '100%',
-              borderRadius: 1,
-              bgcolor: 'secondary.main',
-              '&:hover': {
-                bgcolor: 'secondary.hover',
-              },
-            }}
-          >
-            Dashboards
-          </Button>
-        </NavLink>
         <NavLink to="/tables">
           <Button
             startIcon={<TableViewIcon />}
@@ -56,6 +40,22 @@ export function Layout() {
             }}
           >
             Tables
+          </Button>
+        </NavLink>
+        <NavLink to="/dashboards">
+          <Button
+            startIcon={<DashboardIcon />}
+            variant="contained"
+            sx={{
+              width: '100%',
+              borderRadius: 1,
+              bgcolor: 'secondary.main',
+              '&:hover': {
+                bgcolor: 'secondary.hover',
+              },
+            }}
+          >
+            Dashboards
           </Button>
         </NavLink>
       </Stack>
