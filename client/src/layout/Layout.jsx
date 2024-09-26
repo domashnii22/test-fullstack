@@ -16,7 +16,14 @@ export function Layout() {
           bgcolor: 'primary.main',
         }}
       >
-        <Typography marginBottom="15px" alignSelf="center" variant="h3">
+        <Typography
+          marginBottom="10px"
+          alignSelf="center"
+          variant="h3"
+          sx={{
+            color: 'text.main',
+          }}
+        >
           Menu
         </Typography>
         <NavLink to="/dashboards">

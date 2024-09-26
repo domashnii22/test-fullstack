@@ -10,8 +10,8 @@ const theme = createTheme({
       main: '#007FFF',
       hover: '#0066CC',
     },
-    error: {
-      main: red.A400,
+    text: {
+      main: '#ffffff',
     },
   },
   typography: {
