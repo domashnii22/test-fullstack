@@ -32,8 +32,8 @@ class CategoryController {
 
   async createCategory(req, res) {
     try {
-      const { name } = req.body;
-      const newCategory = await Category.create({ name });
+      const { category_name } = req.body;
+      const newCategory = await Category.create({ category_name });
       res.status(201).json(newCategory);
     } catch (error) {
       console.error(error);
@@ -60,9 +60,9 @@ class CategoryController {
 
   async updateCategory(req, res) {
     try {
-      const { name } = req.body;
+      const { category_name } = req.body;
       const category = await Category.update(
-        { name },
+        { category_name },
         {
           where: { category_id: req.params.id },
         },

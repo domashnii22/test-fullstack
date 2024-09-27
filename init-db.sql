@@ -8,7 +8,7 @@ CREATE TABLE products (
     product_name VARCHAR(255) NOT NULL,
     product_price NUMERIC(10, 2) NOT NULL,
     product_acceptance_date DATE NOT NULL,
-    category_id INTEGER REFERENCES Categories(category_id)
+    category_id INTEGER REFERENCES Categories(category_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO categories (category_name) VALUES
@@ -17,6 +17,13 @@ INSERT INTO categories (category_name) VALUES
 ('Books'),
 ('Shoes'),
 ('Food');
+
+INSERT INTO categories (category_name) VALUES
+('1'),
+('2'),
+('3'),
+('4'),
+('5');
 
 INSERT INTO products (product_name, product_price, product_acceptance_date, category_id) VALUES
 ('Smartphone', 500.00, '2024-04-01', 1),

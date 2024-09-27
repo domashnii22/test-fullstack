@@ -2,10 +2,11 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { NavLink, Outlet } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import TableViewIcon from '@mui/icons-material/TableView';
+import CustomButton from '../components/CustomButton/CustomButton';
 
 export default function Layout() {
   return (
-    <Stack direction="row" padding="40px" gap="100px">
+    <Stack direction="row" padding="40px" gap="50px">
       <Stack
         height="75vh"
         padding="20px"
@@ -27,36 +28,18 @@ export default function Layout() {
           Menu
         </Typography>
         <NavLink to="/tables">
-          <Button
-            startIcon={<TableViewIcon />}
-            variant="contained"
-            sx={{
-              width: '100%',
-              borderRadius: 1,
-              bgcolor: 'secondary.main',
-              '&:hover': {
-                bgcolor: 'secondary.hover',
-              },
-            }}
-          >
-            Tables
-          </Button>
+          <CustomButton
+            icon={<TableViewIcon />}
+            name={'Tables'}
+            width={'100%'}
+          ></CustomButton>
         </NavLink>
         <NavLink to="/dashboards">
-          <Button
-            startIcon={<DashboardIcon />}
-            variant="contained"
-            sx={{
-              width: '100%',
-              borderRadius: 1,
-              bgcolor: 'secondary.main',
-              '&:hover': {
-                bgcolor: 'secondary.hover',
-              },
-            }}
-          >
-            Dashboards
-          </Button>
+          <CustomButton
+            icon={<DashboardIcon />}
+            name={'Dashboards'}
+            width={'100%'}
+          ></CustomButton>
         </NavLink>
       </Stack>
       <Box>

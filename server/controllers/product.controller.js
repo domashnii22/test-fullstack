@@ -27,8 +27,18 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      const { name, price, date, category } = req.body;
-      const newProduct = await Product.create({ name, price, date, category });
+      const {
+        product_name,
+        product_price,
+        product_acceptance_date,
+        category_id,
+      } = req.body;
+      const newProduct = await Product.create({
+        product_name,
+        product_price,
+        product_acceptance_date,
+        category_id,
+      });
       res.status(201).json(newProduct);
     } catch (error) {
       console.error(error);
@@ -55,9 +65,14 @@ class ProductController {
 
   async updateProduct(req, res) {
     try {
-      const { name, price, date, category } = req.body;
+      const {
+        product_name,
+        product_price,
+        product_acceptance_date,
+        category_id,
+      } = req.body;
       const product = await Product.update(
-        { name, price, date, category },
+        { product_name, product_price, product_acceptance_date, category_id },
         {
           where: { product_id: req.params.id },
         },

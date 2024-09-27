@@ -1,61 +1,45 @@
 import { CircularProgress, Stack } from '@mui/material';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-quartz.css';
 import { useEffect, useState } from 'react';
-import { useGetProductsQuery } from '../../utils/ProductApi';
+import TableProducts from '../../components/TableProducts/TableProducts';
+import TableCategories from '../../components/TableCategories/TableCategories';
+import {
+  useGetCategoriesQuery,
+  useGetProductsQuery,
+} from '../../utils/MainApi';
 
 export default function Tables() {
-  const [rowData, setRowData] = useState([]);
-  const [columnDefs, setColumnDefs] = useState([
-    { field: 'product_name', headerName: 'Name' },
-    {
-      field: 'product_price',
-      headerName: 'Price',
-      valueFormatter: p => '$' + p.value.toLocaleString(),
-    },
-    { field: 'product_acceptance_date', headerName: 'Acceptance date' },
-  ]);
-  // const gridRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentLimit, setCurrentLimit] = useState(10);
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  const { data, isLoading } = useGetProductsQuery();
+  const { data: dataOfProducts, isLoading: productsIsLoading } =
+    useGetProductsQuery({
+      page: currentPage,
+      limit: currentLimit,
+    });
+
+  const { data: dataOfCategories, isLoading: categoriesIsLoading } =
+    useGetCategoriesQuery({
+      page: currentPage,
+      limit: currentLimit,
+    });
+
+  const isLoading = productsIsLoading || categoriesIsLoading;
 
   useEffect(() => {
     if (!isLoading) {
-      setRowData(data['products'][0]);
+      setProducts(dataOfProducts['products'][0]);
+      setCategories(dataOfCategories['categories'][0]);
     }
-  }, [isLoading]);
+  }, [isLoading, dataOfProducts, dataOfCategories]);
 
-  console.log(rowData);
-
-  // console.log(data['products'][0]);
-  // const onGridReady = params => {
-  //   gridRef.current = params.api;
-  // };
-
-  // const onFirstDataRendered = params => {
-  //   params.api.getRowsToLoadParams({ startRow: 0, endRow: 10 });
-  // };
-
-  return (
-    <Stack direction="column" gap="25px">
-      {isLoading ? (
-        <CircularProgress size="3rem" />
-      ) : (
-        <div className="ag-theme-quartz" style={{ height: 500, width: 600 }}>
-          <AgGridReact
-            // ref={gridRef}
-            rowData={rowData}
-            columnDefs={columnDefs}
-            // rowModelType="infinite"
-            // cacheBlockSize={50}
-            // maxBlocksInCache={2}
-            // getRowData={fetchData}
-            // onGridReady={onGridReady}
-            // onFirstDataRendered={onFirstDataRendered}
-          />
-        </div>
-      )}
+  return isLoading ? (
+    <CircularProgress size="3rem" />
+  ) : (
+    <Stack direction="row" gap="40px">
+      <TableProducts products={products}></TableProducts>
+      <TableCategories categories={categories}></TableCategories>
     </Stack>
   );
 }

@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { lazy, StrictMode } from 'react';
+import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import Layout from './layout/Layout';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
-import { store } from './utils/srore';
+import { store } from './utils/store';
 import { Provider } from 'react-redux';
 
 const Dashboards = lazy(() => import('./pages/Dashboards/Dashboards'));
@@ -17,11 +17,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/dashboards',
-        element: <Dashboards />,
+        element: (
+          <Suspense fallback={<>Загрузка...</>}>
+            <Dashboards />
+          </Suspense>
+        ),
       },
       {
         path: '/tables',
-        element: <Tables />,
+        element: (
+          <Suspense fallback={<>Загрузка...</>}>
+            <Tables />
+          </Suspense>
+        ),
       },
     ],
   },
