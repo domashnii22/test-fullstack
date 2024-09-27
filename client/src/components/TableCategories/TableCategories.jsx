@@ -17,6 +17,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import {
   useAddCategoryMutation,
   useDeleteCategoryMutation,
+  useEditCategoryMutation,
 } from '../../utils/MainApi';
 
 export default function TableCategories({ categories }) {
@@ -29,6 +30,16 @@ export default function TableCategories({ categories }) {
   ]);
   const [open, setOpen] = useState(false);
 
+  const gridRef = useRef(null);
+
+  const [remove, { error: removeError }] = useDeleteCategoryMutation();
+  const [add, { error: addError }] = useAddCategoryMutation();
+  const [edit, { error: editError }] = useEditCategoryMutation();
+
+  const onSelectionChanged = event => {
+    setSelectedRows(event.api.getSelectedRows());
+  };
+
   const handleClickOpen = mode => {
     setOpen(true);
     setAction(mode);
@@ -40,15 +51,6 @@ export default function TableCategories({ categories }) {
     setValue('');
   };
 
-  const gridRef = useRef(null);
-
-  const [remove, { error: removeError }] = useDeleteCategoryMutation();
-  const [add, { error: addError }] = useAddCategoryMutation();
-
-  const onSelectionChanged = event => {
-    setSelectedRows(event.api.getSelectedRows());
-  };
-
   const handleChange = event => {
     setValue(event.target.value);
   };
@@ -57,10 +59,13 @@ export default function TableCategories({ categories }) {
     try {
       if (selectedRows.length !== 0) {
         await remove({ id: selectedRows[0]['category_id'] });
-        setOpen(false);
       }
     } catch {
       console.log(removeError);
+    } finally {
+      setOpen(false);
+      setAction('');
+      setValue('');
     }
   };
 
@@ -68,12 +73,34 @@ export default function TableCategories({ categories }) {
     try {
       if (value) {
         await add({ category_name: value });
-        setOpen(false);
       }
     } catch {
       console.log(addError);
+    } finally {
+      setOpen(false);
+      setAction('');
+      setValue('');
     }
   };
+
+  const handleEdit = async () => {
+    try {
+      if (value) {
+        await edit({
+          id: selectedRows[0]['category_id'],
+          category_name: value,
+        });
+      }
+    } catch {
+      console.log(editError);
+    } finally {
+      setOpen(false);
+      setAction('');
+      setValue('');
+    }
+  };
+
+  console.log(value);
 
   return (
     <>
@@ -119,20 +146,23 @@ export default function TableCategories({ categories }) {
             Are you sure you want to delete the selected category?
           </DialogTitle>
         )}
-        {action === 'Add' && (
+        {(action === 'Add' || action === 'Edit') && (
           <>
             <DialogTitle id="alert-dialog-title">
-              Add a new category
+              {action === 'Add' ? 'Add a new category' : 'Edit category'}
             </DialogTitle>
             <TextField
               sx={{
                 padding: '15px',
               }}
-              id="standard-basic"
               variant="standard"
               size="medium"
               onChange={handleChange}
-              value={value}
+              defaultValue={
+                action === 'Edit' && selectedRows.length !== 0
+                  ? selectedRows[0]['category_name']
+                  : value
+              }
             />
           </>
         )}
@@ -145,6 +175,11 @@ export default function TableCategories({ categories }) {
           )}
           {action === 'Add' && (
             <Button onClick={handleAdd} autoFocus>
+              Yes
+            </Button>
+          )}
+          {action === 'Edit' && (
+            <Button onClick={handleEdit} autoFocus>
               Yes
             </Button>
           )}

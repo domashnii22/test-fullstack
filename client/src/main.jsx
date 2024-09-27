@@ -6,13 +6,13 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './theme';
 import { store } from './utils/store';
 import { Provider } from 'react-redux';
+import Hello from './pages/Hello/Hello';
 
 const Dashboards = lazy(() => import('./pages/Dashboards/Dashboards'));
 const Tables = lazy(() => import('./pages/Tables/Tables'));
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Layout />,
     children: [
       {
@@ -28,6 +28,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<>Загрузка...</>}>
             <Tables />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/',
+        element: (
+          <Suspense fallback={<>Загрузка...</>}>
+            <Hello />
           </Suspense>
         ),
       },

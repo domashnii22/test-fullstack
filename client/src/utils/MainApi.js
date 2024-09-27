@@ -34,6 +34,14 @@ export const mainApi = createApi({
       }),
       invalidatesTags: ['Category'],
     }),
+    editCategory: builder.mutation({
+      query: ({ id, category_name }) => ({
+        url: `category/${id}`,
+        method: 'PATCH',
+        body: { category_name: category_name },
+      }),
+      invalidatesTags: ['Category'],
+    }),
   }),
 });
 
@@ -42,4 +50,5 @@ export const {
   useDeleteCategoryMutation,
   useGetProductsQuery,
   useAddCategoryMutation,
+  useEditCategoryMutation,
 } = mainApi;
