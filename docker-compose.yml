@@ -28,3 +28,12 @@ services:
       - ./pgdata:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/001.sql
 
+  client:
+    container_name: client
+    image: react-app
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    ports:
+      - '4000:4000'    
+

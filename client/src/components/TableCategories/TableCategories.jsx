@@ -9,6 +9,7 @@ import {
   DialogTitle,
   Stack,
   TextField,
+  Typography,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -100,8 +101,6 @@ export default function TableCategories({ categories }) {
     }
   };
 
-  console.log(value);
-
   return (
     <>
       <Stack direction="column" gap="20px">
@@ -125,7 +124,10 @@ export default function TableCategories({ categories }) {
             onClick={() => handleClickOpen('Edit')}
           ></CustomButton>
         </Stack>
-        <div className="ag-theme-quartz" style={{ height: '65vh', width: 400 }}>
+        <Typography variant="subtitle2">
+          First select a category in the table for delete and edit
+        </Typography>
+        <div className="ag-theme-quartz" style={{ height: '60vh', width: 400 }}>
           <AgGridReact
             ref={gridRef}
             rowData={categories}

@@ -22,7 +22,7 @@ export default function Tables() {
   const { data: dataOfCategories, isLoading: categoriesIsLoading } =
     useGetCategoriesQuery({
       page: currentPage,
-      limit: currentLimit,
+      limit: 100,
     });
 
   const isLoading = productsIsLoading || categoriesIsLoading;

@@ -40,7 +40,6 @@ export default function Dashboards() {
   const prices = products.map(item => item['product_price']);
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
-  console.log(maxPrice);
 
   return isLoading ? (
     <CircularProgress size="3rem" />

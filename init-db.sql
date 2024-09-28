@@ -17,13 +17,12 @@ INSERT INTO categories (category_name) VALUES
 ('Books'),
 ('Shoes'),
 ('Food');
-
 INSERT INTO categories (category_name) VALUES
-('1'),
-('2'),
-('3'),
-('4'),
-('5');
+('Home & Garden'),
+('Beauty & Personal Care'),
+('Toys & Games'),
+('Office Supplies'),
+('Accessories');
 
 INSERT INTO products (product_name, product_price, product_acceptance_date, category_id) VALUES
 ('Smartphone', 500.00, '2024-04-01', 1),
@@ -38,3 +37,17 @@ INSERT INTO products (product_name, product_price, product_acceptance_date, cate
 ('Cookbook', 25.00, '2024-05-07', 3),
 ('Sneakers', 15.00, '2024-05-08', 4),
 ('Tea', 10.00, '2024-05-09', 5);
+
+INSERT INTO products (product_name, product_price, product_acceptance_date, category_id) VALUES
+('Table', 200.00, '2024-06-01', 6),
+('Soap', 5.00, '2024-06-02', 7),
+('Monopoly', 15.00, '2024-06-03', 8),
+('Scissors', 25.00, '2024-06-04', 9),
+('Belt', 12.00, '2024-06-05', 10);
+
+INSERT INTO products (product_name, product_price, product_acceptance_date, category_id) VALUES
+('Chair', 300.00, '2024-07-05', 6),
+('Shampoo', 5.00, '2024-07-06', 7),
+('Uno', 25.00, '2024-07-07', 8),
+('Organizer', 15.00, '2024-07-08', 9),
+('Gloves', 10.00, '2024-07-09', 10);
