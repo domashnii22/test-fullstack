@@ -35,7 +35,7 @@ export default function Dashboards() {
       setProducts(dataOfProducts['products'][0]);
       setCategories(dataOfCategories['categories'][0]);
     }
-  }, [dataOfProducts, dataOfCategories]);
+  }, []);
 
   const prices = products.map(item => item['product_price']);
   const minPrice = Math.min(...prices);

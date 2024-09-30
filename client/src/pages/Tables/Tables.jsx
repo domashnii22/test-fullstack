@@ -16,7 +16,7 @@ export default function Tables() {
     if (data) {
       setCategories(data['categories'][0]);
     }
-  }, [data]);
+  }, []);
 
   return isLoading ? (
     <CircularProgress size="3rem" />
