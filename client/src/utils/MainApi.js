@@ -32,7 +32,7 @@ export const mainApi = createApi({
         method: 'POST',
         body: category_name,
       }),
-      invalidatesTags: ['Category'],
+      invalidatesTags: ['Category', 'Product'],
     }),
     editCategory: builder.mutation({
       query: ({ id, category_name }) => ({
@@ -40,7 +40,7 @@ export const mainApi = createApi({
         method: 'PATCH',
         body: { category_name: category_name },
       }),
-      invalidatesTags: ['Category'],
+      invalidatesTags: ['Category', 'Product'],
     }),
   }),
 });
