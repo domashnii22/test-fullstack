@@ -4,7 +4,7 @@
 - Открыть терминал Bash
 - Перейти в папку server командой "cd server/"
 - Выполнить команду "npm run docker-up"
-- После поднятия контейнеров перейти по [ссылке] (http://localhost:4000/tables)
+- После поднятия контейнеров перейти по [ссылке] (http://localhost:4000)
 
 2) Если не установлен Docker Compose
 - Скачайте установщик Docker Desktop с официального сайта [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop).

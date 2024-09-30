@@ -28,7 +28,7 @@ export default function TableProducts() {
       getRows: async params => {
         const currentPageNumber = Math.floor(params.endRow / limit);
         let lastRow = -1;
-        let list = data['products'][0];
+        let list = data['products'][0] || [];
 
         if (currentPageNumber !== -1) {
           let nextPageData = await fetch(
@@ -36,7 +36,7 @@ export default function TableProducts() {
           );
           nextPageData = await nextPageData.json();
 
-          list = nextPageData['products'][0];
+          list = nextPageData['products'][0] || [];
         }
 
         if (list?.length < limit) {
