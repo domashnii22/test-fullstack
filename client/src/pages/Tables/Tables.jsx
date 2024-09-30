@@ -13,10 +13,10 @@ export default function Tables() {
   });
 
   useEffect(() => {
-    if (!isLoading) {
+    if (data) {
       setCategories(data['categories'][0]);
     }
-  }, [isLoading, data]);
+  }, [isLoading]);
 
   return isLoading ? (
     <CircularProgress size="3rem" />

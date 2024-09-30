@@ -31,11 +31,11 @@ export default function Dashboards() {
   const isLoading = productsIsLoading || categoriesIsLoading;
 
   useEffect(() => {
-    if (!isLoading) {
+    if (dataOfProducts && dataOfCategories) {
       setProducts(dataOfProducts['products'][0]);
       setCategories(dataOfCategories['categories'][0]);
     }
-  }, [isLoading, dataOfProducts, dataOfCategories]);
+  }, [isLoading]);
 
   const prices = products.map(item => item['product_price']);
   const minPrice = Math.min(...prices);
