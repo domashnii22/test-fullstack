@@ -1,6 +1,5 @@
 import {
   Card,
-  CardActions,
   CardContent,
   CircularProgress,
   Stack,
@@ -30,16 +29,16 @@ export default function Dashboards() {
 
   const isLoading = productsIsLoading || categoriesIsLoading;
 
+  const prices = products.map(item => item['product_price']);
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+
   useEffect(() => {
     if (dataOfProducts && dataOfCategories) {
       setProducts(dataOfProducts['products'][0]);
       setCategories(dataOfCategories['categories'][0]);
     }
-  }, []);
-
-  const prices = products.map(item => item['product_price']);
-  const minPrice = Math.min(...prices);
-  const maxPrice = Math.max(...prices);
+  }, [isLoading]);
 
   return isLoading ? (
     <CircularProgress size="3rem" />
